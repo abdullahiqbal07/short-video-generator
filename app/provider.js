@@ -1,32 +1,45 @@
-'use client'
-import { db } from '@/config/db';
-import { useUser } from '@clerk/nextjs';
-import React, { useEffect } from 'react'
-import { users } from '@/config/schema'
-import { eq } from 'drizzle-orm';
+"use client";
+
+import { useUser } from "@clerk/nextjs";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { UserDetails } from "./_context/UserDetailsContext";
 function Provider({ children }) {
+  const { user } = useUser();
+  const [users, setUsers] = useState([]);
 
-  const { user } = useUser()
 
-  useEffect(()=> {
-    user && newUser()
-  }, [user])
-  const newUser = async () => {
-    const finduser = await db.select().from(users).where(eq(users.email, user?.primaryEmailAddress.emailAddress))
-    console.log(finduser)
-    if(!finduser[0]){
-      const newUser = await db.insert(users).values({
-        name: user?.fullName,
-        email: user?.primaryEmailAddress.emailAddress,
-        imageUrl: user?.imageUrl
-      })
+  useEffect(() => {
+    if (user) {
+      createNewUser();
+    }
+  }, [user]);
+
+  const createNewUser = async () => {
+    console.log("Creating new user:", user);
+
+    try {
+      const response = await axios.post("/api/user", { user:user });
+      console.log("User created/verified successfully:", response.data);
+
+      // Update users state if needed
+      setUsers((prevUsers) => [...prevUsers, response.data]);
+    } catch (error) {
+      if (error.response) {
+        console.error("Server error:", error.response.data);
+      } else if (error.request) {
+        console.error("No response from server:", error.request);
+      } else {
+        console.error("Error setting up request:", error.message);
+      }
     }
   };
+
   return (
     <div>
-        { children }
+      <UserDetails.Provider value={{users, setUsers}}>{children}</UserDetails.Provider>
     </div>
-  )
+  );
 }
 
-export default Provider
+export default Provider;
