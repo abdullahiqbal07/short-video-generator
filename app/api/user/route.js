@@ -6,7 +6,7 @@ import { eq } from "drizzle-orm";
 
 export async function POST(request) {
   const { user } = await request.json();
-  console.log(user);
+//   console.log(user);
   // Check if user data is provided
   if (!user) {
     return NextResponse.json({ error: "User data missing" }, { status: 400 });

@@ -6,7 +6,7 @@ import axios from "axios";
 import { UserDetails } from "./_context/UserDetailsContext";
 function Provider({ children }) {
   const { user } = useUser();
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(null);
 
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function Provider({ children }) {
       console.log("User created/verified successfully:", response.data);
 
       // Update users state if needed
-      setUsers((prevUsers) => [...prevUsers, response.data]);
+      setUsers(response?.data);
     } catch (error) {
       if (error.response) {
         console.error("Server error:", error.response.data);
