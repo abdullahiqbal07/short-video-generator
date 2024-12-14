@@ -6,6 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { UserDetails } from "@/app/_context/UserDetailsContext";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import CreateButton from "./CreateButton";
 
 function Sidebar() {
   const { users, setUsers } = useContext(UserDetails);
@@ -42,6 +43,7 @@ function Sidebar() {
       </div>
 
       <ul className="mt-10">
+        <CreateButton />
         {options.map((items, index) => (
           <Link href={items.path} key={index}>
             <li
