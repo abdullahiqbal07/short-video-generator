@@ -16,7 +16,7 @@ function CreateButton() {
     <div>
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="w-full bg-black text-white hover:bg-gray-800">
+          <Button className="w-full bg-blue-600 text-white hover:bg-blue-800">
             + Create Video
           </Button>
         </DialogTrigger>
