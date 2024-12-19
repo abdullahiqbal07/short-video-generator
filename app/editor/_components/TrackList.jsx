@@ -29,7 +29,7 @@ function TrackList() {
 
   return (
     <div className="p-5 bg-gray-100 rounded-lg">
-        <div className="h-[80vh] overflow-x-scroll">
+        <div className="h-[80vh] overflow-x-scroll scrollbar-hide">
       {listFrames.map((frame, index) => (
         <div key={index} className={`flex flex-col items-center border-b rounded-lg cursor-pointer p-3 ${selectFrame == index && 'bg-white'}`} onClick={()=>setSelectFrame(index)}>
           <Image
