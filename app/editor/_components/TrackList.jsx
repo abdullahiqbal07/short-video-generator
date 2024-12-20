@@ -1,21 +1,23 @@
 "use client";
 
+import { videoFromContext } from "@/app/_context/VidoFrameContext";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 const defaultFrame = {
   image: "/frame.png",
   text: "Hello world",
   textColor: "black",
   fontSize: 20,
-  duration: 30,
+  duration: 2,
 };
 
 function TrackList() {
   const [listFrames, setListFrames] = useState([defaultFrame]);
   const [selectFrame, setSelectFrame] = useState(0);
+  const{videoFrames, setVideoFrames} = useContext(videoFromContext);
 
   const addNewFrame = ()=>{
     setListFrames((prev)=>[...prev, defaultFrame]);
@@ -26,6 +28,18 @@ function TrackList() {
 
     setListFrames(updateFrame);
   }
+
+  useEffect(()=>{
+    let totalDuration = 0;
+    listFrames.forEach((frame, index)=>{
+      totalDuration += frame.duration;
+    });
+
+    setVideoFrames({
+      totalDuration: totalDuration,
+      listFrames: listFrames
+    })
+  }, [listFrames])
 
   return (
     <div className="p-5 bg-gray-100 rounded-lg">

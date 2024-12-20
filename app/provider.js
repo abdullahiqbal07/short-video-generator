@@ -4,10 +4,11 @@ import { useUser } from "@clerk/nextjs";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { UserDetails } from "./_context/UserDetailsContext";
+import { videoFromContext } from "./_context/VidoFrameContext";
 function Provider({ children }) {
   const { user } = useUser();
-  const [users, setUsers] = useState(null);
-
+  const [users, setUsers] = useState([]);
+  const [videoFrames, setVideoFrames] = useState([]);
 
   useEffect(() => {
     if (user) {
@@ -19,7 +20,7 @@ function Provider({ children }) {
     console.log("Creating new user:", user);
 
     try {
-      const response = await axios.post("/api/user", { user:user });
+      const response = await axios.post("/api/user", { user: user });
       console.log("User created/verified successfully:", response.data);
 
       // Update users state if needed
@@ -37,7 +38,11 @@ function Provider({ children }) {
 
   return (
     <div>
-      <UserDetails.Provider value={{users, setUsers}}>{children}</UserDetails.Provider>
+      <UserDetails.Provider value={{ users, setUsers }}>
+        <videoFromContext.Provider value={{ videoFrames, setVideoFrames }}>
+          {children}
+        </videoFromContext.Provider>
+      </UserDetails.Provider>
     </div>
   );
 }
