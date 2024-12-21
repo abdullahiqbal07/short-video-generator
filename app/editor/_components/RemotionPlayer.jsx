@@ -19,6 +19,8 @@ function RemotionPlayer() {
 
   const { videoFrames, setVideoFrames } = useContext(videoFromContext);
 
+  console.log(videoFrames)
+
   const videoRef = useRef();
 
   useEffect(() => {
@@ -29,7 +31,7 @@ function RemotionPlayer() {
       }
     }
     videoRef?.current?.seekTo(skipDuratin * 30);
-  }, [videoFrames.selectFrame]);
+  }, [videoFrames?.selectFrame]);
 
   return (
     <div>

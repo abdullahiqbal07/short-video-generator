@@ -7,6 +7,7 @@ import { UserDetails } from "./_context/UserDetailsContext";
 import { videoFromContext } from "./_context/VidoFrameContext";
 function Provider({ children }) {
   const { user } = useUser();
+  
   const [users, setUsers] = useState([]);
   const [videoFrames, setVideoFrames] = useState([]);
 
