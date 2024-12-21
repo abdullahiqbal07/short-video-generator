@@ -29,7 +29,8 @@
     "remotion": "4.0.241",
     "tailwind-merge": "^2.5.5",
     "tailwind-scrollbar-hide": "^2.0.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
     "drizzle-kit": "^0.29.1",
