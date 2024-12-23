@@ -19,7 +19,7 @@ function RemotionPlayer() {
 
   const { videoFrames, setVideoFrames } = useContext(videoFromContext);
 
-  console.log(videoFrames)
+  console.log(videoFrames);
 
   const videoRef = useRef();
 

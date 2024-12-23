@@ -44,8 +44,6 @@ function TrackList() {
     });
   }, [listFrames, selectFrame]);
 
-
-
   useEffect(() => {
     if (
       videoFrames &&
