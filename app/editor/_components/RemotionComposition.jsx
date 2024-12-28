@@ -23,7 +23,13 @@ function RemotionComposition({ listFrames }) {
             durationInFrames={duration}
           >
             <AbsoluteFill className="flex items-center justify-center">
-              <h2>{frame.text}</h2>
+              <h2
+                style={{
+                  fontSize: frame?.fontSize,
+                }}
+              >
+                {frame.text}
+              </h2>
             </AbsoluteFill>
           </Sequence>
         );

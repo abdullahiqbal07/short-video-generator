@@ -9,6 +9,7 @@ import { Baseline } from "lucide-react";
 import TextArea from "./TextArea";
 import { videoFromContext } from "@/app/_context/VidoFrameContext";
 import { debounce } from "lodash";
+import SliderField from "./SliderField";
 
 function FrameConfig() {
   const { videoFrames, setVideoFrames } = useContext(videoFromContext);
@@ -66,6 +67,11 @@ function FrameConfig() {
             <TextArea
               frame={frame}
               handleInputChange={(value) => handleChange("text", value)}
+            />
+            <SliderField
+              label={"Font Size"}
+              defaultValue={frame?.fontSize}
+              handleInputChange={(value)=>handleChange("fontSize", value)}
             />
           </AccordionContent>
         </AccordionItem>
