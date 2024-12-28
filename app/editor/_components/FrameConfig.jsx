@@ -71,7 +71,7 @@ function FrameConfig() {
             <SliderField
               label={"Font Size"}
               defaultValue={frame?.fontSize}
-              handleInputChange={(value)=>handleChange("fontSize", value)}
+              handleInputChange={(value) => handleChange("fontSize", value)}
             />
           </AccordionContent>
         </AccordionItem>
