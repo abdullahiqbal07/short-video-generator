@@ -7,18 +7,20 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-function DropDown({label, defaultValue, options}) {
+function DropDown({ label, defaultValue, options, handleInputChange }) {
   return (
-    <div>
-        <label>{label}</label>
-      <Select>
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder={defaultValue} />
+    <div className="mt-3 flex flex-col gap-2">
+      <label>{label}</label>
+      <Select value={defaultValue} onValueChange={(value)=>handleInputChange(value)}>
+        <SelectTrigger className="w-full bg-white">
+          <SelectValue placeholder={defaultValue || "Select an option"} />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="light">Light</SelectItem>
-          <SelectItem value="dark">Dark</SelectItem>
-          <SelectItem value="system">System</SelectItem>
+          {options?.map((option, index) => (
+            <SelectItem key={index} value={option}>
+              {option}
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
     </div>

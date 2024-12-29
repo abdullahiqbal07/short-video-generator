@@ -10,6 +10,7 @@ import TextArea from "./TextArea";
 import { videoFromContext } from "@/app/_context/VidoFrameContext";
 import { debounce } from "lodash";
 import SliderField from "./SliderField";
+import DropDown from "./DropDown";
 
 function FrameConfig() {
   const { videoFrames, setVideoFrames } = useContext(videoFromContext);
@@ -67,6 +68,12 @@ function FrameConfig() {
             <TextArea
               frame={frame}
               handleInputChange={(value) => handleChange("text", value)}
+            />
+            <DropDown
+              defaultValue={frame?.duration}
+              label={"Duration (s)"}
+              options={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
+              handleInputChange={(value) => handleChange("duration", value)}
             />
             <SliderField
               label={"Font Size"}
