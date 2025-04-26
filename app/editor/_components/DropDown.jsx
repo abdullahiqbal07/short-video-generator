@@ -20,8 +20,8 @@ function DropDown({ label, defaultValue, options, handleInputChange }) {
         </SelectTrigger>
         <SelectContent>
           {options?.map((option, index) => (
-            <SelectItem key={index} value={option}>
-              {option}
+            <SelectItem key={index} value={option?.name??option}>
+              {option?.name??option}
             </SelectItem>
           ))}
         </SelectContent>

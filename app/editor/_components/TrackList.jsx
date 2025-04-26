@@ -2,6 +2,7 @@
 
 import { videoFromContext } from "@/app/_context/VidoFrameContext";
 import { Button } from "@/components/ui/button";
+import { fontFamily } from "@remotion/google-fonts/Bungee";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
@@ -12,6 +13,8 @@ const defaultFrame = {
   textColor: "black",
   fontSize: 20,
   duration: 2,
+  fontFamily: "Bungee",
+  bgColor:"#000"
 };
 
 function TrackList() {

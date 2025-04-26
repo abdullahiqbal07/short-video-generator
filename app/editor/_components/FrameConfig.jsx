@@ -5,12 +5,16 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Baseline } from "lucide-react";
+import { Baseline, SwatchBook } from "lucide-react";
 import TextArea from "./TextArea";
 import { videoFromContext } from "@/app/_context/VidoFrameContext";
 import { debounce } from "lodash";
 import SliderField from "./SliderField";
 import DropDown from "./DropDown";
+import { fontList } from "@/app/_data/FontList";
+import { ColorPickerList } from "./ColorPickerList";
+
+import { BackgroundColorList } from "./BackgroundColorList";
 
 function FrameConfig() {
   const { videoFrames, setVideoFrames } = useContext(videoFromContext);
@@ -79,6 +83,30 @@ function FrameConfig() {
               label={"Font Size"}
               defaultValue={frame?.fontSize}
               handleInputChange={(value) => handleChange("fontSize", value)}
+            />
+            <DropDown
+              defaultValue={frame?.fontFamily}
+              label={"Font Family"}
+              options={fontList}
+              handleInputChange={(value) => handleChange("fontFamily", value)}
+            />
+            <ColorPickerList
+              defaultColor={frame?.textColor}
+              handleInputChange={(value) => handleChange("textColor", value)}
+            />
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-2">
+          <AccordionTrigger>
+            <span className="flex gap-2 text-lg items-center">
+              <SwatchBook />
+              Background Color
+            </span>
+          </AccordionTrigger>
+          <AccordionContent>
+            <BackgroundColorList
+              defaultValue={frame?.bgColor}
+              handleInputChange={(value) => handleChange("bgColor", value)}
             />
           </AccordionContent>
         </AccordionItem>
