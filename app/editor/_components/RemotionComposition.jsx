@@ -1,16 +1,20 @@
-import React from "react";
-import { AbsoluteFill, Sequence } from "remotion";
-import * as Bungee from "@remotion/google-fonts/Bungee"
-import * as Caveat from "@remotion/google-fonts/Caveat"
-import * as Anton from "@remotion/google-fonts/Anton"
-import * as PlayfairDisplay from "@remotion/google-fonts/PlayfairDisplay"
+import React, { useContext } from "react";
+import { AbsoluteFill, Audio, Sequence, staticFile } from "remotion";
+import * as Bungee from "@remotion/google-fonts/Bungee";
+import * as Caveat from "@remotion/google-fonts/Caveat";
+import * as Anton from "@remotion/google-fonts/Anton";
+import * as PlayfairDisplay from "@remotion/google-fonts/PlayfairDisplay";
+import { videoFromContext } from "@/app/_context/VidoFrameContext";
 function RemotionComposition({ listFrames }) {
   let trackFrame = 0;
 
-  Bungee.loadFont()
-  Caveat.loadFont()
-  Anton.loadFont()
-  PlayfairDisplay.loadFont()
+  Bungee.loadFont();
+  Caveat.loadFont();
+  Anton.loadFont();
+  PlayfairDisplay.loadFont();
+
+  const { videoFrames, setVideoFrames } = useContext(videoFromContext);
+
   return (
     <AbsoluteFill
       style={{
@@ -30,15 +34,17 @@ function RemotionComposition({ listFrames }) {
             from={frameDuration}
             durationInFrames={duration}
           >
-            <AbsoluteFill style={{
-              fontFamily: frame?.fontFamily,
-              background: frame?.bgColor
-
-            }} className="flex items-center justify-center">
+            <AbsoluteFill
+              style={{
+                fontFamily: frame?.fontFamily,
+                background: frame?.bgColor,
+              }}
+              className="flex items-center justify-center"
+            >
               <h2
                 style={{
                   fontSize: frame?.fontSize,
-                  color: frame?.textColor
+                  color: frame?.textColor,
                 }}
               >
                 {frame.text}
@@ -47,6 +53,7 @@ function RemotionComposition({ listFrames }) {
           </Sequence>
         );
       })}
+      <Audio volume={0.5} src={staticFile(`/${videoFrames?.music}`)} />
     </AbsoluteFill>
   );
 }

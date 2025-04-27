@@ -10,7 +10,7 @@ import React, { useContext, useEffect, useState } from "react";
 const defaultFrame = {
   image: "/frame.png",
   text: "Hello world",
-  textColor: "black",
+  textColor: "#ffffff",
   fontSize: 20,
   duration: 2,
   fontFamily: "Bungee",
@@ -40,11 +40,12 @@ function TrackList() {
       totalDuration += frame.duration;
     });
 
-    setVideoFrames({
+    setVideoFrames(prev=>({
+      ...prev,
       totalDuration: totalDuration,
       listFrames: listFrames,
       selectFrame: selectFrame,
-    });
+    }));
   }, [listFrames, selectFrame]);
 
   useEffect(() => {
