@@ -28,6 +28,14 @@ export async function GET(request) {
   const {searchParams} = new URL(request.url)
   // console.log(searchParams)
   const videoId = searchParams.get('videoId')
+  const emailId = searchParams.get('emailId')
+  console.log(emailId)
+
+  if(emailId){
+    const result = await db.select().from(video_table).where(eq(video_table.createdBy, emailId))
+    return NextResponse.json(result); 
+  }
+
   const result = await db.select().from(video_table).where(eq(video_table.videoId, videoId))
   return NextResponse.json(result[0]);
 }
