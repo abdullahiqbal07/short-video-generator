@@ -1,4 +1,5 @@
 import { Download, Edit, Trash2 } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 export const VideoList = ({ videoList }) => {
@@ -33,19 +34,19 @@ export const VideoList = ({ videoList }) => {
 
             {/* Footer */}
             <div className="flex justify-between items-center p-4 border-t gap-2">
-              <button className="flex items-center gap-1 text-sm text-blue-600 font-medium hover:underline">
+              <Link
+                href={"/editor/" + video?.videoId}
+                className="flex items-center gap-1 text-sm text-blue-600 font-medium hover:underline"
+              >
                 <Edit className="w-4 h-4" />
-                Edit
-              </button>
+              </Link>
 
               <button className="flex items-center gap-1 text-sm text-green-600 font-medium hover:underline">
                 <Download className="w-4 h-4" />
-                Download
               </button>
 
               <button className="flex items-center gap-1 text-sm text-red-500 font-medium hover:underline">
                 <Trash2 className="w-4 h-4" />
-                Delete
               </button>
             </div>
           </div>
